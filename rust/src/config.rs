@@ -54,6 +54,9 @@ pub enum UnicodeDisplay {
 
 #[derive(Debug)]
 pub struct Config {
+    /// The files to scan.
+    pub files: Vec<String>,
+
     /// Only scan data sections in file. (scans whole file by default)
     pub data_only: bool,
 
@@ -82,6 +85,7 @@ pub struct Config {
 impl Default for Config {
     fn default() -> Self {
         Self {
+            files: Vec::new(),
             data_only: false,
             print_file_name: false,
             min_seq_len: 4,
@@ -100,6 +104,11 @@ pub struct ConfigBuilder {
 }
 
 impl ConfigBuilder {
+    pub fn files(mut self, files: Vec<String>) -> Self {
+        self.config.files = files;
+        self
+    }
+
     pub fn data_only(mut self, data_only: bool) -> Self {
         self.config.data_only = data_only;
         self

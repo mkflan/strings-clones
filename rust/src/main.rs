@@ -1,6 +1,7 @@
 #![allow(dead_code, unused)]
 #![deny(rust_2018_idioms)]
 
+mod cli;
 mod config;
 
 use config::ConfigBuilder;
@@ -29,5 +30,5 @@ fn main() {
         std::process::exit(0);
     }
 
-    let mut config = ConfigBuilder::default();
+    let config = cli::parse_cli_args(args);
 }
